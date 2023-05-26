@@ -71,10 +71,10 @@ while True:
 
     eth0 = subprocess.check_output(cmd, shell=True).decode("utf-8")
     
-    cmd = "ifconfig eth1 2> /dev/null | awk '/^eth/{s=$1;getline;print s,$2}'"
+    cmd = "ifconfig eth0.10 2> /dev/null | awk '/^eth/{s=$1;getline;print s,$2}'"
 
     
-    eth1 = subprocess.check_output(cmd, shell=True).decode("utf-8")
+    eth0_10 = subprocess.check_output(cmd, shell=True).decode("utf-8")
     
     cmd = 'cut -f 1 -d " " /proc/loadavg'
     CPU = subprocess.check_output(cmd, shell=True).decode("utf-8")
@@ -96,8 +96,9 @@ while True:
     draw.text((x, top + 11), "CPU load: " + CPU, font=font, fill=255)
     draw.text((x, top + 21), "CPU temp: " + TEMP, font=font, fill=255)
     draw.text((x, top + 31), MemUsage, font=font, fill=255)
-    draw.text((x, top + 41), eth0, font=font, fill=255)
-    draw.text((x, top + 51), eth1 , font=font, fill=255)
+    draw.text((x, top + 41), eth0_10 , font=font, fill=255)
+    if "." in eth0:
+       draw.text((x, top + 51), eth0, font=font, fill=255)
     
     # Display image.
     disp.image(image)
