@@ -96,8 +96,9 @@ while True:
     draw.text((x, top + 11), "CPU load: " + CPU, font=font, fill=255)
     draw.text((x, top + 21), "CPU temp: " + TEMP, font=font, fill=255)
     draw.text((x, top + 31), MemUsage, font=font, fill=255)
-    draw.text((x, top + 41), eth0, font=font, fill=255)
-    draw.text((x, top + 51), eth0_10 , font=font, fill=255)
+    draw.text((x, top + 41), eth0_10 , font=font, fill=255)
+    if ":" not in eth0:
+       draw.text((x, top + 51), eth0, font=font, fill=255)
     
     # Display image.
     disp.image(image)
